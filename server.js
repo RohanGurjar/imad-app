@@ -81,6 +81,12 @@ function createTemplate(data) {
     return htmlTemplate;
 }
 
+var counter = 0;
+apt.get('/counter', function(req, res) {
+    counter = counter + 1;
+    res.send(counter.toString());
+});
+
 app.get('/:articleName', function (req, res) {
     var articleName = req.params.articleName;
     res.send(createTemplate(articles[articleName]));
