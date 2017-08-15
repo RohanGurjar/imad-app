@@ -11,6 +11,6 @@ button.onclick = function() {
             }
         }
     };
-    request.open('GET', 'http://http://rohangurjar467.imad.hasura-app.io/counter', true);
+    request.open('GET', 'http://rohangurjar467.imad.hasura-app.io/counter', true);
     request.send(null);
 };
