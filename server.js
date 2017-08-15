@@ -9,20 +9,40 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-var articleOne = {
-    title: 'Article One | Rohan Gurjar',
-    heading: 'Article One',
-    date: 'Aug 15, 2017',
-    content:
-    `<p>
-        This is the content for my first article.
-    </p>
-    <p>
-        This is the content for my first article.
-    </p>
-    <p>
-        This is the content for my first article.
-    </p>`
+var articles = {
+    'article-one': {
+        title: 'Article One | Rohan Gurjar',
+        heading: 'Article One',
+        date: 'Aug 15, 2017',
+        content:
+        `<p>
+            This is the content for my first article.
+        </p>
+        <p>
+            This is the content for my first article.
+        </p>
+        <p>
+            This is the content for my first article.
+        </p>`
+    },
+    'article-two': {
+        title: 'Article Two | Rohan Gurjar',
+        heading: 'Article Two',
+        date: 'Aug 15, 2017',
+        content:
+        `<p>
+            This is the content for my second article.
+        </p>`
+    },
+    'article-three': {
+        title: 'Article Three | Rohan Gurjar',
+        heading: 'Article Three',
+        date: 'Aug 15, 2017',
+        content:
+        `<p>
+            This is the content for my third article.
+        </p>`
+    }
 };
 
 function createTemplate(data) {
@@ -61,16 +81,9 @@ function createTemplate(data) {
     return htmlTemplate;
 }
 
-app.get('/article-one', function (req, res) {
-   res.send(createTemplate(articleOne));
-});
-
-app.get('/article-two', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get('/article-three', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html')); 
+app.get('/:articleName', function (req, res) {
+    var articleName = req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/ui/style.css', function (req, res) {
